@@ -59,8 +59,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+if DEBUG:
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
 
 ROOT_URLCONF = 'hrms.urls'
 
@@ -82,13 +84,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hrms.wsgi.application'
 
 
-# Database
-DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-    'default': {
+if DEBUG:
+    database_conf = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': config('DB_PORT', default='5432'),
+    }
+else:
+    database_conf = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
         'USER': os.environ.get('DB_USER'),
@@ -96,12 +102,22 @@ DATABASES = {
         'HOST': os.environ.get('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
     }
+
+
+# Database
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': database_conf
 }
 
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    "https://hrms-backend-lum4.onrender.com/"
+    "https://hrms-backend-lum4.onrender.com/",
+    "https://hrms-frontend-rust-five.vercel.app"
 ]
 
 
