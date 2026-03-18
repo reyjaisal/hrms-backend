@@ -158,7 +158,7 @@ class EmployeeView(ModelViewSet):
                 designation_id = request.POST.get("designation")
                 skills = request.POST.getlist("skills", [])
                 experience = request.POST.get("experience") or "0"
-                activate_existing_user = request.POST.get("activate", False)
+                activate_existing_user = request.POST.get("restore_archived_employee", False) == "true"
                 username = f"hrms_{first_name.lower()}"
 
                 # Initial user data
@@ -210,7 +210,9 @@ class EmployeeView(ModelViewSet):
                                 logger.info("[INFO] User is created but validation issue while creating employee")
                 else:
                     if user and not activate_existing_user:
-                        context['need_activation_confirmation'] = True
+                        exist_emp = self.get_queryset().filter(user=user)
+                        context['user_exist'] = exist_emp.filter(archived=False).exists()
+                        context['need_activation_confirmation'] = exist_emp.filter(archived=True).exists()
                         context['info'] = "User with this email already exist, if you want to activate this user then please check the activate existing user option"
             except Exception as e:
                 logger.error(f"[ERROR] {str(e)}")
@@ -218,7 +220,7 @@ class EmployeeView(ModelViewSet):
         else:
             logger.error("[ERROR] Incorrect method used for creating new employee")
 
-        return Response(context, status=status.HTTP_200_OK if context["success"] else status.HTTP_400_BAD_REQUEST)
+        return Response(context, status=status.HTTP_200_OK)
     
 
     # Get employees details
@@ -228,6 +230,25 @@ class EmployeeView(ModelViewSet):
         try:
             employee = self.get_queryset().filter(archived=False).get(pk=pk)
             employee.archived = True
+            employee.save()
+            serializer = self.get_serializer(employee)
+
+            context = {
+                "success": True,
+                "data": serializer.data
+            }
+        except Exception as e:
+            logger.error(f"[ERROR] {str(e)}")
+
+        return Response(context, status=status.HTTP_200_OK if context["success"] else status.HTTP_404_NOT_FOUND)
+    
+
+    @action(detail=True, methods=['patch'])
+    def restore_employee(self, request, pk=None):
+        context = {"success": False}
+        try:
+            employee = self.get_queryset().filter(archived=True).get(pk=pk)
+            employee.archived = False
             employee.save()
             serializer = self.get_serializer(employee)
 
@@ -322,7 +343,7 @@ class AttendanceView(ModelViewSet):
             context = {
                 "success": True,
                 "data": attendance.data,
-                "current_date": datetime.now().strftime("%Y-%m-%d"),
+                "current_date": day.strftime("%Y-%m-%d"),
                 "is_current_day": is_current_day
             }
         except Exception as e:
