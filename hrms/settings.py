@@ -101,7 +101,7 @@ DATABASES = {
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = [
-    #"https://your-frontend.vercel.app"
+    "https://hrms-backend-lum4.onrender.com/"
 ]
 
 
