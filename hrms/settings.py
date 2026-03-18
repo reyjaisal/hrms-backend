@@ -84,16 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hrms.wsgi.application'
 
 
-if DEBUG:
-    database_conf = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': config('DB_PORT', default='5432'),
-    }
-else:
+if not DEBUG:
     database_conf = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),
@@ -102,6 +93,16 @@ else:
         'HOST': os.environ.get('DB_HOST'),
         'PORT': config('DB_PORT', default='5432'),
     }
+else:
+    database_conf = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': 'localhost',
+        'PORT': config('DB_PORT', default='5432'),
+    }
+    
 
 
 # Database
