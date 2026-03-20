@@ -11,10 +11,10 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 ## 🚀 Live Demo
 
 * 🌐 **Frontend URL:** https://hrms-frontend-ow9fmva3e-reyjaisals-projects.vercel.app/
-* 🔗 **Backend API:** https://hrms-backend-lum4.onrender.com/api/
+* 🔗 **Backend API:** https://myhrms.zapto.org/api/ (AWS)
 * 📂 **Frontend GitHub Repository:** https://github.com/reyjaisal/hrms-frontend/
 
-> ⚠️ Backend is deployed on [Render](https://render.com/) free server, site might be take time to load, check the backend [API link](https://hrms-backend-lum4.onrender.com/api/) to ensure the backend server status!!
+> ⚠️ Backend is deployed on AWS EC2 free server, site might be take time to load, check the backend [API link](https://myhrms.zapto.org/api/) to ensure the backend server status!!
 
 ---
 
@@ -38,8 +38,8 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 ### Deployment
 
 * Frontend: [Vercel](https://vercel.com/)
-* Backend: [Render](https://render.com/)
-* Database: MongoDB [Render](https://render.com/)
+* Backend: [AWS](http://aws.amazon.com/)
+* Database: Postgres - [AWS](http://aws.amazon.com/)
 
 ---
 
