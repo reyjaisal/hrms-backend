@@ -40,6 +40,7 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 * Frontend: [Vercel](https://vercel.com/)
 * Backend: [AWS](http://aws.amazon.com/)
 * Database: Postgres - [AWS](http://aws.amazon.com/)
+* Website Walkthrough Video: https://www.awesomescreenshot.com/video/50686343?key=6f1ccf01c58fc8831d057fb9bb3d0111
 
 ---
 
