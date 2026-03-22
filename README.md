@@ -13,6 +13,7 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 * 🌐 **Frontend URL:** https://hrms-frontend-rust-five.vercel.app/
 * 🔗 **Backend API:** https://myhrms.zapto.org/api/ (AWS)
 * 📂 **Frontend GitHub Repository:** https://github.com/reyjaisal/hrms-frontend/
+* 🔗 **Website Walkthrough Video:** https://www.awesomescreenshot.com/video/50686343?key=6f1ccf01c58fc8831d057fb9bb3d0111
 
 > ⚠️ Backend is deployed on AWS EC2 free server, site might be take time to load, check the backend [API link](https://myhrms.zapto.org/api/) to ensure the backend server status!!
 
@@ -40,7 +41,6 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 * Frontend: [Vercel](https://vercel.com/)
 * Backend: [AWS](http://aws.amazon.com/)
 * Database: Postgres - [AWS](http://aws.amazon.com/)
-* Website Walkthrough Video: https://www.awesomescreenshot.com/video/50686343?key=6f1ccf01c58fc8831d057fb9bb3d0111
 
 ---
 
