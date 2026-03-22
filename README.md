@@ -10,7 +10,7 @@ This project simulates a basic internal HR tool commonly used in organizations, 
 
 ## 🚀 Live Demo
 
-* 🌐 **Frontend URL:** https://hrms-frontend-ow9fmva3e-reyjaisals-projects.vercel.app/
+* 🌐 **Frontend URL:** https://hrms-frontend-rust-five.vercel.app/
 * 🔗 **Backend API:** https://myhrms.zapto.org/api/ (AWS)
 * 📂 **Frontend GitHub Repository:** https://github.com/reyjaisal/hrms-frontend/
 
